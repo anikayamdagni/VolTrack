@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Clements SNHS VolTrack</title>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        
+    </head>
+    <body>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+        <div class="container">
+
+            <div id="app">
+                <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+                  <a href="project.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <span class="fs-2">Clements SNHS Volunteering Tracker</span> <br/>
+                  </a> <br/>
+                  <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="#" class="nav-link active" @click="AppMode='list'" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" @click="AppMode='about'">About</a></li>
+                  </ul>
+                </header>
+            
+                <info-form v-show="AppMode=='form'" @form-submitted="addForm" @form-canceled="cancelForm"></info-form>
+            
+                <div v-show="AppMode=='list'">
+                    <div class="row mb-2">
+                        <div class="col-sm-6 ">
+                            <span class="fs-4">Volunteer Sessions</span><br/>    
+                        </div>
+                        <div class="col-sm-6 d-flex justify-content-end">
+                            <button class='btn btn-success' @click="AppMode='form'">Record Session</button>        
+                        </div>
+                    </div>
+
+                    <p v-if="!forms.length">There are no entries yet.</p>
+                    <ul style="list-style-type: none;">
+                    <li v-for="form in forms">
+                        <div class="card mb-3" >
+                            <div class="card-header">
+                              Date: {{ form.date }} &nbsp;&nbsp;&nbsp;Faction: {{ form.faction }}
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">{{ form.name }}</h5>
+                              <p class="card-text"> <strong>Location & Activity:</strong><br/>{{ form.locationActivity }}</p>
+                              <p class="card-text"> <strong>Services:</strong><br/>{{ form.description }}</p>
+                              <p class="card-text"> <strong>Suggestions:</strong><br/>{{ form.nextVol }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    </ul>
+                </div>
+
+                <div v-show="AppMode=='about'">
+                    <span class="fs-4 mb-2">About VolTracker</span>
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h3 class="text-info">Purpose</h3>
+
+                             <p>The purpose of this web application is to track information on volunteer sessions done by the members of Science National Honor Society (SNHS) at 
+                                 Clements High School. A member will use this tracker to: </p>
+                                 <ul>
+                                     <li>Review the information about the last session at their location, including suggestions for their volunteering time</li>
+                                     <li>Log information about their volunteering session for future volunteers</li>
+                                 </ul>
+                                  
+
+                            <h3 class="text-info">Technology</h3>
+                            
+                            <h4>Web Application 3-Tier Architecture</h4>
+                            <img src="architecture.png" class="img-fluid mt-3 mb-3" alt="3-Tier Architecture">
+                            
+                            <h3 class="text-info">Presentation Layer (Web Front End)</h3>
+                            <h4>HTML 5</h4>
+                            <ul>
+                                <li>The latest version of markup language for webpages</li>
+                                <li>Audio/Video Support</li>
+                                <li>Improved Graphics support</li>
+                                <li>Local storage support</li>
+                                <li>Much more…</li>
+                            </ul>
+                            <h4>Bootstrap</h4>
+                            <ul>
+                                <li>CSS Framework</li>
+                                <li>Responsive design</li>
+                                <li>Mobile-first</li>
+                            </ul>
+                            <h4>Vue.JS</h4>
+                            <ul>
+                                <li>Javascript Framework</li>
+                                <li>Component library based on HTML, CSS & JS</li>
+                                <li>Reactivity – Two-way Data Binding</li>
+                                <li>Uses MVVM architecture</li>
+                                <li>Fast rendering ensured by virtual DOM and minimal load time</li>
+                                <li>High Performance</li>
+                                <li>Routing and data management tools</li>
+                            </ul>
+                            <h4>JSON Data Structure</h4>
+                            <ul>
+                                <li>JSON is an open standard file format and data interchange format </li>
+                                <li>Human-readable text</li>
+                                <li>Format to store and transmit data objects consisting of attribute-value pairs and arrays</li> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="d-flex flex-wrap justify-content-center py-3 mb-4 border-top">
+                VolTracker Ver 1.0.0 &#169; Copyrights 2021
+            </footer>
+
+        </div>
+
+ 
+        
+        <script src="main.js"></script>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+      
+
+    </body>
+</html>
+
+
+
